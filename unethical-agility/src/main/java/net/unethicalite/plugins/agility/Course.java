@@ -43,6 +43,18 @@ public enum Course
 			.array()
 	),
 
+	ALKHARID_COURSE(ObstacleFactory.newInstance(true)
+			.append(new Area(new Location(3319, 3159, 0), new Location(3269, 3198, 0), 0), "Rough wall", "Climb", 11633)
+			.append(new Area(new Location(3271, 3192, 3), new Location(3278, 3180, 3), 3), "Tightrope", "Cross", 14398)
+			.append(new Area(new Location(3272, 3173, 3), new Location(3265, 3161, 3), 3), "Cable", "Swing-across", 14402)
+			.append(new Area(new Location(3283, 3176, 3), new Location(3302, 3160, 3), 3), "Zip line", "Teeth-grip", 14403)
+			.append(new Area(new Location(3313, 3160, 1), new Location(3318, 3165, 1), 1), "Tropical tree", "Swing-across", 14404)
+			.append(new Area(new Location(3318, 3173, 2), new Location(3312, 3179, 2), 2), "Roof top beams", "Climb", 11634)
+			.append(new Area(new Location(3318, 3180, 3), new Location(3312, 3186, 3), 3), "Tightrope", "Cross", 14409)
+			.append(new Area(new Location(3297, 3185, 3), new Location(3306, 3194, 3), 3), "Gap", "Jump", 14399)
+			.array()
+	),
+
 	VARROCK_COURSE(ObstacleFactory.newInstance(true)
 			.append(new Area(new Location(3249, 3392, 0), new Location(3186, 3431, 0), 0),
 					"Rough wall", "Climb", 14412)
