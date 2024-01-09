@@ -125,14 +125,28 @@ public class PickpocketPlugin extends LoopedPlugin
 					.orElse(null);
 			if (bank != null)
 			{
-				bank.interact("Bank", "Use");
+				if (Reachable.isInteractable(bank))
+				{
+					bank.interact("Bank", "Use");
+				}
+				else
+				{
+					Movement.walkTo(bank);
+				}
 				return -4;
 			}
 
 			NPC banker = NPCs.getNearest("Banker");
 			if (banker != null)
 			{
-				banker.interact("Bank");
+				if (Reachable.isInteractable(banker))
+				{
+					bank.interact("Bank");
+				}
+				else
+				{
+					Movement.walkTo(banker);
+				}
 				return -4;
 			}
 

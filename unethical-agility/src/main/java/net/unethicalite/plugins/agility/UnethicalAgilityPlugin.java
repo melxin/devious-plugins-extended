@@ -34,6 +34,8 @@ import org.pf4j.Extension;
 
 import javax.swing.SwingUtilities;
 
+import java.util.Arrays;
+
 import static net.runelite.api.ItemID.HALF_A_SUMMER_PIE;
 import static net.runelite.api.ItemID.SUMMER_PIE;
 
@@ -152,7 +154,7 @@ public class UnethicalAgilityPlugin extends LoopedPlugin
 				return -1;
 			}
 		}
-		TileObject obs = findProperObstacle(obstacle);
+		TileObject obs = (obstacle.getName().equals("Tightrope") ? findProperObstacle(obstacle, true) : findProperObstacle(obstacle, false));
 
 		if (Movement.getRunEnergy() > Rand.nextInt(5, 55) && !Movement.isRunEnabled())
 		{
@@ -198,16 +200,30 @@ public class UnethicalAgilityPlugin extends LoopedPlugin
 		log.error("Obstacle was null");
 		return -1;
 	}
-
-	public TileObject findProperObstacle(Obstacle obstacle)
+	public int[] tightropeIDs = {
+			14899,
+			11405,
+			11406,
+			14932,
+			14905,
+			14911
+	};
+	public TileObject findProperObstacle(Obstacle obstacle, boolean tightrope)
 	{
 		try
 		{
-			return TileObjects.getFirstSurrounding(obstacle.getLocation().getX(), obstacle.getLocation().getY(),
+			TileObject t = TileObjects.getFirstSurrounding(obstacle.getLocation().getX(), obstacle.getLocation().getY(),
 					obstacle.getLocation().getZ(), 3, o -> o.getName() != null
 							&& o.getName().equals(obstacle.getName())
 							&& o.hasAction(obstacle.getAction())
 			);
+			if (tightrope && t == null) {
+				return TileObjects.getFirstSurrounding(obstacle.getLocation().getX(), obstacle.getLocation().getY(),
+						obstacle.getLocation().getZ(), 3, o -> o.getName() != null
+								&& Arrays.stream(tightropeIDs).anyMatch(i -> i == o.getId())
+				);
+			}
+			return t;
 		}
 		catch (Exception exception)
 		{
