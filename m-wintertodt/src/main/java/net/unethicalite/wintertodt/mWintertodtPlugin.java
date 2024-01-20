@@ -321,7 +321,7 @@ public class mWintertodtPlugin extends LoopedPlugin
 	{
 		if (isInWintertodtRegion())
 		{
-			Widget w = Widgets.get(396, 3);
+			Widget w = Widgets.get(396, 20);
 			return w == null || !w.getText().contains("The Wintertodt returns");
 		}
 		return false;
